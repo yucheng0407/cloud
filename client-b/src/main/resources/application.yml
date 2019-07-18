@@ -1,0 +1,63 @@
+#logging:
+#  file: log/udp.log
+#  pattern:
+#    console: '[%clr(%p)] [%d{yyyy-MM-dd HH:mm:ss.sss}] [%t] %clr([%C.%M]%L:) %m%n'
+#    file: '[%p] [%d{yyyy-MM-dd HH:mm:ss.sss}] [%t] %C.%M %L %m%n'
+spring:
+  application:
+    name: client
+  jms:
+    pub-sub-domain: false # 配置消息的类型，如果是true则表示为topic消息，如
+    template:
+      delivery-mode: non_persistent # 非持久化消息
+  activemq:
+    user:    # 连接用户名
+    password:   # 连接密码
+    broker-url: tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0&jms.useAsyncSend=true&jms.dispatchAsync=true
+       # 消息组件的连接主机信息
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
+    username: sxjldw
+    password: sxjldw
+#    url: jdbc:oracle:thin:@10.120.119.4:1521:PGIS
+#    username: GPSDTGJ
+#    password: GPSsxga2018
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    initialSize: 10    #配置初始化大小、最小、最大
+    maxWait: 60000    #配置获取连接等待超时的时间
+    minIdle: 5
+    maxActive: 20
+    timeBetweenEvictionRunsMillis: 60000    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    minEvictableIdleTimeMillis: 300000    #配置一个连接在池中最小生存的时间，单位是毫秒
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat
+    poolPreparedStatements: true
+  jpa:
+    database: oracle
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect
+        batch_size: 25
+        cache:
+             use_second_level_cache: false
+#        format_sql: true
+#        show_sql: true
+#netty绑定端口
+netty:
+  ports: 9920,9921
+#执行条件
+cacherun:
+  maxcount: 10000
+  maxwait: 60000
+#消费者线程
+threadMaxCount: 3
+server:
+  port: 8763
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
