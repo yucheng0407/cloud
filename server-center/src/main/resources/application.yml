@@ -7,9 +7,9 @@ logging:
     root: error
 spring:
   application:
-    name: server-ribbon
+    name: server-center
 server:
-  port: 8759
+  port: 8760
 eureka:
   client:
     serviceUrl:
