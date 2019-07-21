@@ -52,6 +52,12 @@ spring:
 #        format_sql: true
 #        show_sql: true
 #netty绑定端口
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: elasticsearch
+      repositories:
+        enabled: true
 netty:
   ports: 9920,9921
 #执行条件
