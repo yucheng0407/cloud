@@ -25,6 +25,7 @@ import java.sql.Timestamp;
 @EnableJpaAuditing
 @EnableScheduling
 @EnableEurekaClient
+@RestController
 public class Boot {
     public static void main(String[] args){
         SpringApplication.run(Boot.class, args);
