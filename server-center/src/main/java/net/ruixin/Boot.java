@@ -10,6 +10,14 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
+
 /**
  * @author 服务消费者
  */
@@ -18,6 +26,7 @@ import org.springframework.context.annotation.Bean;
 @EnableDiscoveryClient
 @EnableHystrixDashboard
 @EnableZuulProxy
+@RestController
 public class Boot {
     public static void main(String[] args) {
         SpringApplication.run(Boot.class, args);
@@ -30,5 +39,11 @@ public class Boot {
         registrationBean.addUrlMappings("/hystrix.stream");
         registrationBean.setName("HystrixMetricsStreamServlet");
         return registrationBean;
+    }
+    @RequestMapping("/getToken")
+    public String home(HttpSession session) {
+        String uuid=UUID.randomUUID().toString().replaceAll("-", "");
+        session.setAttribute("token",uuid);
+        return uuid;
     }
 }

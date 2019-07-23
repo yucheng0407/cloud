@@ -15,6 +15,7 @@
     <modules>
         <module>client-a</module>
         <module>client-b</module>
+        <module>client-login</module>
         <module>server-center</module>
         <module>server-logon</module>
     </modules>
