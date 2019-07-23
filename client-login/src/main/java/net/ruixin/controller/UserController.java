@@ -2,10 +2,12 @@ package net.ruixin.controller;
 
 import net.ruixin.domain.entity.User;
 import net.ruixin.service.UserService;
+import net.ruixin.util.assignClass.FindClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +18,13 @@ import java.util.Map;
 public class UserController implements IUserController {
     @Autowired
     UserService userService;
+
     @Override
     @RequestMapping("/getUser")
     public User getUser(String account, String password) {
-       return userService.getUser(account,password);
+        List<Class<?>> classes=FindClass.getClasses("net.ruixin.controller",RestController.class);
+//        FindClass.getMe(classes,RequestMapping.class);
+        return userService.getUser(account, password);
     }
 
     @Override
