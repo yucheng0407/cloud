@@ -1,6 +1,7 @@
 package net.ruixin.util.assignClass;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -168,16 +169,50 @@ public class FindClass {
 
         return controllers;
     }
-//    public static <T extends Annotation> T getMe(List<Class<?>> clsList,Class<T> annotationClass){
-//        for (Class<?> cls : clsList) {
-//            Method[] methods = cls.getMethods();
-//            for (Method method : methods) {
-//                RequestMapping annotation = method.getAnnotation(annotationClass);
-//                if (annotation != null) {
-//                   String value = annotation.value();//找到RequestMapping的注入value值
-//
-//                }
-//            }
-//        }
-//    }
+
+    private static String addSlan(String url){
+        if(url==null||url.equals("")){
+            return "";
+        }
+        if(url.charAt(0)=='/'){
+            return url;
+        }else {
+            return "/"+url;
+        }
+    }
+
+    public static List getServiceClass(String packageName) {
+        List<Class<?>> clsList = getClasses(packageName, ServiceClass.class);
+        List rlist = new ArrayList();
+        for (Class<?> cls : clsList) {
+            RequestMapping pAnnotation = cls.getAnnotation(RequestMapping.class);
+            List list = new ArrayList();
+            Map rMap = new HashMap();
+            rMap.put("name", cls.getAnnotation(ServiceClass.class).name());
+            rMap.put("subService", list);
+            rlist.add(rMap);
+            Method[] methods = cls.getMethods();
+            for (Method method : methods) {
+                ServiceOperate annotation = method.getAnnotation(ServiceOperate.class);
+                if (annotation != null) {
+                    RequestMapping sAnnotation = method.getAnnotation(RequestMapping.class);
+                    Map sMap = new HashMap();
+                    String url="";
+                    sMap.put("name", annotation.name());
+                    sMap.put("type", annotation.type().name());
+                    if(pAnnotation!=null){
+                        url=url+addSlan(pAnnotation.value()[0]);
+                    }
+                    if(sAnnotation!=null){
+                        url=url+addSlan(sAnnotation.value()[0]);
+                    }
+                    if(!url.equals(""))sMap.put("url", url);
+                    list.add(sMap);
+                    // String value = annotation.value();//找到RequestMapping的注入value值
+
+                }
+            }
+        }
+        return rlist;
+    }
 }
