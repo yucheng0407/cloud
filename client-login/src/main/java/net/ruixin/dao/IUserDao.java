@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Created by yucheng on 2019/7/18.
  */
-@Repository
+
 public interface IUserDao extends JpaRepository<User, Integer> {
     @Query("FROM User where loginName=:loginName and passWord=:passWord")
     User getUser(@Param("loginName") String loginName, @Param("passWord") String passWord);

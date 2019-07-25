@@ -189,7 +189,8 @@ public class FindClass {
             List list = new ArrayList();
             Map rMap = new HashMap();
             rMap.put("name", cls.getAnnotation(ServiceClass.class).name());
-            rMap.put("subService", list);
+            rMap.put("dm", cls.getAnnotation(ServiceClass.class).id());
+            rMap.put("subServices", list);
             rlist.add(rMap);
             Method[] methods = cls.getMethods();
             for (Method method : methods) {
@@ -199,6 +200,7 @@ public class FindClass {
                     Map sMap = new HashMap();
                     String url="";
                     sMap.put("name", annotation.name());
+                    sMap.put("dm", annotation.id());
                     sMap.put("type", annotation.type().name());
                     if(pAnnotation!=null){
                         url=url+addSlan(pAnnotation.value()[0]);

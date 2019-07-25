@@ -9,7 +9,24 @@ import java.util.Map;
  * Created by yucheng on 2019/7/18.
  */
 public interface IServiceController {
-    Boolean logonService(String ip, String port, String application, String services);
+    /**
+     *
+     * @param ip
+     * @param port
+     * @param application 项目名
+     * @param name 项目全称呼
+     * @param services 服务接口数据
+     * @return
+     */
+    Boolean logonService(String dm,String ip, String port, String application,String name, String services);
 
-    List queryService(String ip, String port, String application);
+    /**
+
+     */
+    List queryService(String dm);
+    /**
+     *
+
+     */
+    Boolean clearService(String dm);
 }

@@ -5,6 +5,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface ServiceOperate {
-    String name();
+    String name() ;
     ServiceOperateType type() default ServiceOperateType.Query;
+
+    String id();
 }

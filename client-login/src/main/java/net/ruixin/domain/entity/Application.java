@@ -18,7 +18,6 @@ import java.util.List;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Data
 @EntityListeners(AuditingEntityListener.class)
 public class Application implements Serializable,Cloneable  {
     @Id
@@ -34,7 +33,63 @@ public class Application implements Serializable,Cloneable  {
     private String port;
     @Column(name="CJSJ")
     private Date cjsj;
-    @OneToMany(targetEntity = Service.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumns(@JoinColumn(name = "DM", referencedColumnName = "SSDM"))
+    @OneToMany(targetEntity = Service.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumns(@JoinColumn(name = "SSDM", referencedColumnName = "DM"))
     List<Service> services;
+
+    public String getDm() {
+        return dm;
+    }
+
+    public void setDm(String dm) {
+        this.dm = dm;
+    }
+
+    public String getApplication() {
+        return application;
+    }
+
+    public void setApplication(String application) {
+        this.application = application;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getPort() {
+        return port;
+    }
+
+    public void setPort(String port) {
+        this.port = port;
+    }
+
+    public Date getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(Date cjsj) {
+        this.cjsj = cjsj;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
 }

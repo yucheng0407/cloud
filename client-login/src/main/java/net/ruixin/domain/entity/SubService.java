@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,9 +16,8 @@ import java.util.Date;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Data
 @EntityListeners(AuditingEntityListener.class)
-public class SubService {
+public class SubService implements Serializable,Cloneable {
     @Id
     @Column(name = "DM")
     private String dm;
@@ -31,4 +31,52 @@ public class SubService {
     private Date cjsj;
     @Column(name = "SSDM")
     private String ssdm;
+
+    public String getDm() {
+        return dm;
+    }
+
+    public void setDm(String dm) {
+        this.dm = dm;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Date getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(Date cjsj) {
+        this.cjsj = cjsj;
+    }
+
+    public String getSsdm() {
+        return ssdm;
+    }
+
+    public void setSsdm(String ssdm) {
+        this.ssdm = ssdm;
+    }
 }

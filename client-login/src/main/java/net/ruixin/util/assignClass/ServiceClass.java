@@ -7,4 +7,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface ServiceClass {
     String name();
+
+    String id();
+
 }

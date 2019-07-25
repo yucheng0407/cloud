@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,9 +17,8 @@ import java.util.List;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Data
 @EntityListeners(AuditingEntityListener.class)
-public class Service {
+public class Service implements Serializable,Cloneable {
     @Id
     @Column(name = "DM")
     private String dm;
@@ -28,7 +28,47 @@ public class Service {
     private String ssdm;
     @Column(name = "CJSJ")
     private Date cjsj;
-    @OneToMany(targetEntity = Service.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumns(@JoinColumn(name = "DM", referencedColumnName = "SSDM"))
+    @OneToMany(targetEntity = SubService.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumns(@JoinColumn(name = "SSDM", referencedColumnName = "DM"))
     List<SubService> subServices;
+
+    public String getDm() {
+        return dm;
+    }
+
+    public void setDm(String dm) {
+        this.dm = dm;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSsdm() {
+        return ssdm;
+    }
+
+    public void setSsdm(String ssdm) {
+        this.ssdm = ssdm;
+    }
+
+    public Date getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(Date cjsj) {
+        this.cjsj = cjsj;
+    }
+
+    public List<SubService> getSubServices() {
+        return subServices;
+    }
+
+    public void setSubServices(List<SubService> subServices) {
+        this.subServices = subServices;
+    }
 }
