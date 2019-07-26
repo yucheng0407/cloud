@@ -1,15 +1,24 @@
 package net.ruixin.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import net.ruixin.domain.entity.Application;
+import net.ruixin.domain.entity.SubService;
 import net.ruixin.service.ServicerService;
 import net.ruixin.util.assignClass.ServiceClass;
 import net.ruixin.util.assignClass.ServiceOperate;
 import net.ruixin.util.assignClass.ServiceOperateType;
 import net.ruixin.util.json.JacksonUtil;
+import net.ruixin.util.tools.BeanMapUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yucheng on 2019/7/24.
@@ -17,15 +26,30 @@ import java.util.List;
 @RestController
 @ServiceClass(id = "FWGL", name = "服务管理")
 public class ServiceController implements IServiceController {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     ServicerService servicerService;
+
+//    @Override
+//    @RequestMapping("logonService")
+//    @ServiceOperate(id = "ZCFW", name = "注册服务", type = ServiceOperateType.Add)
+//    public String logonService(String dm, String ip, String port, String application, String name, String services) {
+//     //   servicerService.logonService(dm, ip, port, application, name, JacksonUtil.readValue(services, List.class));
+//        return "SUCEESS";
+//    }
 
     @Override
     @RequestMapping("logonService")
     @ServiceOperate(id = "ZCFW", name = "注册服务", type = ServiceOperateType.Add)
-    public Boolean logonService(String dm, String ip, String port, String application, String name, String services) {
-        servicerService.logonService(dm, ip, port, application, name, JacksonUtil.readValue(services, List.class));
-        return true;
+    public String logonService(@RequestBody Map map) {
+        try {
+            servicerService.logonService(map);
+            return "SUCEESS";
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("注册服务", e);
+            return "ERROR";
+        }
     }
 
     @Override

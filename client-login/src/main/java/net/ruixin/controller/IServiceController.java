@@ -18,7 +18,9 @@ public interface IServiceController {
      * @param services 服务接口数据
      * @return
      */
-    Boolean logonService(String dm,String ip, String port, String application,String name, String services);
+   // String logonService(String dm,String ip, String port, String application,String name, String services);
+
+    String logonService(Map map);
 
     /**
 

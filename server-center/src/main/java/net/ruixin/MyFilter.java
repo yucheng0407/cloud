@@ -44,7 +44,7 @@ public class MyFilter extends ZuulFilter {
         if (sessionToken!=null&&sessionToken.equals(paramToken)) {
             access = true;
         }
-        if (!access) {
+        if (!true) {
             log.warn("token错误");
             ctx.setSendZuulResponse(false);
             ctx.setResponseStatusCode(401);

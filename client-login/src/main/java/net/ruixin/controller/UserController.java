@@ -32,7 +32,12 @@ public class UserController implements IUserController {
     @ServiceOperate(id = "CZYH", name = "查找用户", type = ServiceOperateType.Query)
     public User getUser(String account, String password) {
 //        FindClass.getMe(classes,RequestMapping.class);
-        return userService.getUser(account, password);
+        try {
+            return userService.getUser(account, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @RequestMapping("getRole")
@@ -42,7 +47,7 @@ public class UserController implements IUserController {
         try {
             String ip = InetAddress.getLocalHost().getHostAddress();
             String service = JacksonUtil.toJson(list);
-            serviceController.logonService("FWYHXT",ip, "8765", "client-login", "服务与用户管理系统", service);
+            //       serviceController.logonService("FWYHXT",ip, "8765", "client-login", "服务与用户管理系统", service);
         } catch (UnknownHostException e) {
             e.printStackTrace();
             return list;

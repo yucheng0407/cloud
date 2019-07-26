@@ -5,6 +5,7 @@ import net.ruixin.dao.IUserDao;
 import net.ruixin.domain.entity.Application;
 import net.ruixin.domain.entity.SubService;
 import net.ruixin.domain.entity.User;
+import net.ruixin.util.json.JacksonUtil;
 import net.ruixin.util.tools.BeanMapUtil;
 import net.ruixin.util.tools.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,13 @@ public class ServicerService {
     IServiceDao serviceDao;
 
     @Transactional
-    public Boolean logonService(String id, String ip, String port, String applicationName, String name, List<Map<String, Object>> services) {
+    public Boolean logonService(Map logonMap) {
         try {
-            Application application = new Application();
+            List<Map<String, Object>> services= (List<Map<String,Object>>) logonMap.get("services");
+            Application application = BeanMapUtil.mapToBean(logonMap, Application.class);;
             Date date = new Date();
             List<net.ruixin.domain.entity.Service> serviceList = new ArrayList<>();
-            application.setDm(id);
-            application.setIp(ip);
-            application.setName(name);
-            application.setPort(port);
             application.setCjsj(date);
-            application.setApplication(applicationName);
             for (Map map : services) {
                 List<SubService> subServiceList = new ArrayList<>();
                 net.ruixin.domain.entity.Service service = BeanMapUtil.mapToBean(map, net.ruixin.domain.entity.Service.class);
