@@ -65,4 +65,15 @@ public class ServiceController implements IServiceController {
     public Boolean clearService(String dm) {
         return servicerService.clearService(dm);
     }
+
+    public String refreshService(String dm){
+        try {
+            servicerService.refreshService(dm);
+            return "SUCEESS";
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("刷新服务", e);
+            return "ERROR";
+        }
+    }
 }

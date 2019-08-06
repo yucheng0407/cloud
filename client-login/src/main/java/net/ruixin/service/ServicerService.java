@@ -59,4 +59,10 @@ public class ServicerService {
         serviceDao.deleteById(dm);
         return true;
     }
+
+    public void refreshService(String dm) {
+        Optional<Application> opt=serviceDao.findById(dm);
+        Application application=opt.get();
+
+    }
 }
