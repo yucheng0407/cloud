@@ -12,11 +12,11 @@ import net.ruixin.util.tools.BeanMapUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +52,20 @@ public class ServiceController implements IServiceController {
         }
     }
 
+    @RequestMapping("testSql")
+    //@CrossOrigin(allowCredentials="true", allowedHeaders="*", methods={RequestMethod.GET,RequestMethod.POST}, origins="*")
+    public Map testSql(String sql, HttpServletRequest request) {
+        Map map = new HashMap();
+        try {
+            servicerService.testSql(sql);
+            map.put("type", true);
+        } catch (Exception e) {
+            map.put("type", false);
+            map.put("cause",e.getCause());
+        }
+        return map;
+    }
+
     @Override
     @RequestMapping("queryService")
     @ServiceOperate(id = "CZFW", name = "查找服务", type = ServiceOperateType.Query)
@@ -66,7 +80,7 @@ public class ServiceController implements IServiceController {
         return servicerService.clearService(dm);
     }
 
-    public String refreshService(String dm){
+    public String refreshService(String dm) {
         try {
             servicerService.refreshService(dm);
             return "SUCEESS";

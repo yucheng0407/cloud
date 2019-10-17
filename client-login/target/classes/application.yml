@@ -17,15 +17,15 @@ spring:
        # 消息组件的连接主机信息
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-#    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
-#    username: sxjldw
-#    password: sxjldw
-#    driverClassName: oracle.jdbc.driver.OracleDriver
-    driverClassName: com.mysql.jdbc.Driver
-    #jdbc.url=jdbc:mysql://172.28.1.225:3306/vue?useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://localhost:3306/vue?useUnicode=true&characterEncoding=utf8
-    username: vue
-    password:
+    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
+    username: sxjldw
+    password: sxjldw
+    driverClassName: oracle.jdbc.driver.OracleDriver
+#    driverClassName: com.mysql.jdbc.Driver
+#    #jdbc.url=jdbc:mysql://172.28.1.225:3306/vue?useUnicode=true&characterEncoding=utf8
+#    url: jdbc:mysql://localhost:3306/vue?useUnicode=true&characterEncoding=utf8
+#    username: vue
+#    password:
 #    url: jdbc:oracle:thin:@10.120.119.4:1521:PGIS
 #    username: GPSDTGJ
 #    password: GPSsxga2018
@@ -74,3 +74,5 @@ eureka:
         enabled: true
    serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+

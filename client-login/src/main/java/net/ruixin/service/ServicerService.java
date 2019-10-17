@@ -2,6 +2,7 @@ package net.ruixin.service;
 
 import net.ruixin.dao.IServiceDao;
 import net.ruixin.dao.IUserDao;
+import net.ruixin.dao.TestDao;
 import net.ruixin.domain.entity.Application;
 import net.ruixin.domain.entity.SubService;
 import net.ruixin.domain.entity.User;
@@ -21,7 +22,8 @@ import java.util.*;
 public class ServicerService {
     @Autowired
     IServiceDao serviceDao;
-
+    @Autowired
+    TestDao testDao;
     @Transactional
     public Boolean logonService(Map logonMap) {
         try {
@@ -64,5 +66,9 @@ public class ServicerService {
         Optional<Application> opt=serviceDao.findById(dm);
         Application application=opt.get();
 
+    }
+
+    public Map testSql(String sql) {
+        return  testDao.testSql(sql);
     }
 }

@@ -1,8 +1,4 @@
 package net.ruixin.util.assignClass;
-
-import net.ruixin.util.json.JacksonUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 绑定服务
  * Created by yucheng on 2019/7/26.
  */
 @Component

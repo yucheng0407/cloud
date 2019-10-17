@@ -25,6 +25,7 @@ eureka:
 #    client:
 #      path: /client/**
 #      serviceId: client
+#信息
 
 
 
