@@ -1,6 +1,7 @@
 package net.ruixin;
 
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -27,6 +28,7 @@ import java.util.UUID;
 @EnableHystrixDashboard
 @EnableZuulProxy
 @RestController
+@EnableAdminServer
 public class Boot {
     public static void main(String[] args) {
         SpringApplication.run(Boot.class, args);
