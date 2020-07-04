@@ -25,7 +25,7 @@ import java.util.Properties;
  * @author gai
  * 数据库配置
  */
-@Component
+
 public class DatabaseConfig {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 

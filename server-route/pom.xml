@@ -8,6 +8,16 @@
         <artifactId>cloud</artifactId>
         <version>1.0</version>
     </parent>
-    <artifactId>server-logon</artifactId>
+    <artifactId>server-route</artifactId>
     <version>1.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+    </dependencies>
 </project>

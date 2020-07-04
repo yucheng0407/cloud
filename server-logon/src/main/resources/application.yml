@@ -1,3 +1,9 @@
+logging:
+  pattern:
+    console: '[%clr(%p)] [%d{yyyy-MM-dd HH:mm:ss.sss}] [%t] %clr([%C.%M]%L:) %m%n'
+    file: '[%p] [%d{yyyy-MM-dd HH:mm:ss.sss}] [%t] %C.%M %L %m%n'
+  level:
+    root: error
 server:
   port: 8761
 eureka:
@@ -11,3 +17,6 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  application:
+    name: admin-client

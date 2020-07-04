@@ -17,18 +17,13 @@ spring:
        # 消息组件的连接主机信息
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-#    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
-#    username: sxjldw
-#    password: sxjldw
-#    driverClassName: oracle.jdbc.driver.OracleDriver
-    driverClassName: com.mysql.jdbc.Driver
-    #jdbc.url=jdbc:mysql://172.28.1.225:3306/vue?useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://localhost:3306/vue?useUnicode=true&characterEncoding=utf8
-    username: vue
-    password:
+    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
+    username: sxjldw
+    password: sxjldw
 #    url: jdbc:oracle:thin:@10.120.119.4:1521:PGIS
 #    username: GPSDTGJ
 #    password: GPSsxga2018
+    driverClassName: oracle.jdbc.driver.OracleDriver
     initialSize: 10    #配置初始化大小、最小、最大
     maxWait: 60000    #配置获取连接等待超时的时间
     minIdle: 5
@@ -52,12 +47,6 @@ spring:
 #        format_sql: true
 #        show_sql: true
 #netty绑定端口
-#  data:
-#    elasticsearch:
-#      cluster-nodes: 127.0.0.1:9300
-#      cluster-name: elasticsearch
-#      repositories:
-#        enabled: true
 netty:
   ports: 9920,9921
 #执行条件
@@ -70,7 +59,5 @@ server:
   port: 8763
 eureka:
   client:
-   healthcheck:
-        enabled: true
-   serviceUrl:
+    serviceUrl:
       defaultZone: http://localhost:8761/eureka/

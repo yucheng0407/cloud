@@ -1,7 +1,7 @@
 package net.ruixin.controller;
 
 import net.ruixin.domain.entity.User;
-import net.ruixin.service.UserService;
+import net.ruixin.feignServer.UserService;
 import net.ruixin.util.assignClass.FindClass;
 import net.ruixin.util.assignClass.ServiceClass;
 import net.ruixin.util.assignClass.ServiceOperate;
@@ -64,4 +64,5 @@ public class UserController implements IUserController {
     public List<User> getUserList(Map map) {
         return null;
     }
+
 }

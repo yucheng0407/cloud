@@ -6,14 +6,20 @@
 spring:
   application:
     name: client
-  jms:
-    pub-sub-domain: false # 配置消息的类型，如果是true则表示为topic消息，如
-    template:
-      delivery-mode: non_persistent # 非持久化消息
-  activemq:
-    user:    # 连接用户名
-    password:   # 连接密码
-    broker-url: tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0&jms.useAsyncSend=true&jms.dispatchAsync=true
+  cloud:
+    config:
+      uri: https://github.com/yucheng0407/config
+      username: yujun04072010@163.com
+      password: yujun697094
+      label: master
+#  jms:
+#    pub-sub-domain: false # 配置消息的类型，如果是true则表示为topic消息，如
+#    template:
+#      delivery-mode: non_persistent # 非持久化消息
+#  activemq:
+#    user:    # 连接用户名
+#    password:   # 连接密码
+#    broker-url: tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0&jms.useAsyncSend=true&jms.dispatchAsync=true
        # 消息组件的连接主机信息
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -44,6 +50,14 @@ spring:
         batch_size: 25
         cache:
              use_second_level_cache: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
 #        format_sql: true
 #        show_sql: true
 #netty绑定端口

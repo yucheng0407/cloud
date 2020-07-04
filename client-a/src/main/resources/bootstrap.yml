@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/yucheng0407/config
+          username: yujun04072010@163.com
+          password: yujun697094
+          force-pull: true
+          search-paths: /**
+
+
+

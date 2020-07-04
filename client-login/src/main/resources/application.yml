@@ -6,29 +6,29 @@
 spring:
   application:
     name: client-login
-#  jms:
-#    pub-sub-domain: false # 配置消息的类型，如果是true则表示为topic消息，如
-#    template:
-#      delivery-mode: non_persistent # 非持久化消息
-#  activemq:
-#    user:    # 连接用户名
-#    password:   # 连接密码
-#    broker-url: tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0&jms.useAsyncSend=true&jms.dispatchAsync=true
-       # 消息组件的连接主机信息
+      #  jms:
+      #    pub-sub-domain: false # 配置消息的类型，如果是true则表示为topic消息，如
+      #    template:
+      #      delivery-mode: non_persistent # 非持久化消息
+      #  activemq:
+      #    user:    # 连接用户名
+    #    password:   # 连接密码
+    #    broker-url: tcp://127.0.0.1:61616?wireFormat.maxInactivityDuration=0&jms.useAsyncSend=true&jms.dispatchAsync=true
+    # 消息组件的连接主机信息
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
-    username: sxjldw
-    password: sxjldw
-    driverClassName: oracle.jdbc.driver.OracleDriver
-#    driverClassName: com.mysql.jdbc.Driver
-#    #jdbc.url=jdbc:mysql://172.28.1.225:3306/vue?useUnicode=true&characterEncoding=utf8
-#    url: jdbc:mysql://localhost:3306/vue?useUnicode=true&characterEncoding=utf8
-#    username: vue
-#    password:
-#    url: jdbc:oracle:thin:@10.120.119.4:1521:PGIS
-#    username: GPSDTGJ
-#    password: GPSsxga2018
+    #    url: jdbc:oracle:thin:@192.168.0.110:1521:orcl
+    #    username: sxjldw
+    #    password: sxjldw
+    #    driverClassName: oracle.jdbc.driver.OracleDriver
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://90ce8e0.nat123.fun:28748/vue?useUnicode=true&characterEncoding=utf8
+    #    url: jdbc:mysql://localhost:3306/vue?useUnicode=true&characterEncoding=utf8
+    username: vue
+    password:
+    #    url: jdbc:oracle:thin:@10.120.119.4:1521:PGIS
+    #    username: GPSDTGJ
+    #    password: GPSsxga2018
     initialSize: 10    #配置初始化大小、最小、最大
     maxWait: 60000    #配置获取连接等待超时的时间
     minIdle: 5
@@ -42,13 +42,13 @@ spring:
     filters: stat
     poolPreparedStatements: true
   jpa:
-    database: oracle
+    database: mysql
     properties:
       hibernate:
         dialect: org.hibernate.dialect.Oracle10gDialect
         batch_size: 25
         cache:
-             use_second_level_cache: false
+          use_second_level_cache: false
 #        format_sql: true
 #        show_sql: true
 #netty绑定端口
@@ -70,9 +70,9 @@ server:
   port: 8765
 eureka:
   client:
-   healthcheck:
-        enabled: true
-   serviceUrl:
+    healthcheck:
+      enabled: true
+    serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
 
