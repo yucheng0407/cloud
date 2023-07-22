@@ -6,7 +6,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
-        <cloud.version>2.2.1.RELEASE</cloud.version>
+        <cloud.version>2.2.4.RELEASE</cloud.version>
     </properties>
     <parent>
         <groupId>org.springframework.boot</groupId>
